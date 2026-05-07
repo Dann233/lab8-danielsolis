@@ -1,17 +1,17 @@
-import { searchShows, getShowData, getEpisodeList } from "./tvmaze.js";
-import { createSeasonHTML, createAutocompleteItemHTML } from "./render.js";
+import { searchShows, getShowData, getEpisodeList } from "./Tvmaze.js";
+import { createSeasonHTML, createAutocompleteItemHTML } from "./Render.js";
 
 const DEFAULT_ID = "2993";
 
-const $input      = document.getElementById("search-input");
-const $clearBtn   = document.getElementById("clear-btn");
-const $dropdown   = document.getElementById("autocomplete-dropdown");
+const $input        = document.getElementById("search-input");
+const $clearBtn     = document.getElementById("clear-btn");
+const $dropdown     = document.getElementById("autocomplete-dropdown");
 const $heroBackdrop = document.getElementById("hero-backdrop");
-const $heroLabel  = document.getElementById("hero-label");
-const $heroTitle  = document.getElementById("hero-title");
-const $heroRating = document.getElementById("hero-rating");
-const $poster     = document.getElementById("poster");
-const $episodes   = document.getElementById("episodes");
+const $heroLabel    = document.getElementById("hero-label");
+const $heroTitle    = document.getElementById("hero-title");
+const $heroRating   = document.getElementById("hero-rating");
+const $poster       = document.getElementById("poster");
+const $episodes     = document.getElementById("episodes");
 
 let debounceTimer = null;
 
@@ -34,7 +34,6 @@ const loadShow = async (id) => {
 
   $poster.src = show.image;
   $poster.alt = show.name;
-
   $heroLabel.textContent = [show.year, show.status].filter(Boolean).join(" · ");
   $heroTitle.textContent = show.name;
   $heroRating.innerHTML = show.rating
@@ -66,14 +65,10 @@ const closeDropdown = () => $dropdown.classList.add("hidden");
 const handleInput = () => {
   const q = $input.value.trim();
   $clearBtn.classList.toggle("hidden", !q);
-
   clearTimeout(debounceTimer);
-
   if (!q) { closeDropdown(); return; }
-
   $dropdown.setHTMLUnsafe(`<li class="autocomplete-searching">Buscando…</li>`);
   $dropdown.classList.remove("hidden");
-
   debounceTimer = setTimeout(async () => {
     const results = await searchShows(q);
     openDropdown(results.slice(0, 7));
@@ -81,18 +76,13 @@ const handleInput = () => {
 };
 
 $input.addEventListener("input", handleInput);
-
-$input.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeDropdown();
-});
-
+$input.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDropdown(); });
 $clearBtn.addEventListener("click", () => {
   $input.value = "";
   $clearBtn.classList.add("hidden");
   closeDropdown();
   $input.focus();
 });
-
 document.addEventListener("click", (e) => {
   if (!e.target.closest(".search-wrapper")) closeDropdown();
 });
