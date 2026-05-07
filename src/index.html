@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TVMaze Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="global.css" />
+  <script type="module" src="./Components/app.js" defer></script>
+</head>
+<body>
+
+  <div class="bg-grain"></div>
+
+  <nav class="topbar">
+    <span class="logo">TV<em>maze</em></span>
+    <div class="search-wrapper">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="search-input" placeholder="Buscar serie…" autocomplete="off" spellcheck="false" />
+        <button class="clear-btn hidden" id="clear-btn" aria-label="Limpiar">✕</button>
+      </div>
+      <ul class="autocomplete-dropdown hidden" id="autocomplete-dropdown"></ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="show-hero">
+      <div class="hero-backdrop" id="hero-backdrop">
+        <div class="hero-gradient"></div>
+      </div>
+      <div class="hero-body">
+        <img class="poster" id="poster" src="" alt="" />
+        <div class="hero-meta">
+          <p class="hero-label" id="hero-label">Cargando…</p>
+          <h1 class="hero-title" id="hero-title"></h1>
+          <div class="hero-rating" id="hero-rating"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seasons-section">
+      <div class="seasons-header">
+        <h2 class="section-title">Episodios por temporada</h2>
+        <div class="legend">
+          <span class="legend-item rating-0">0</span>
+          <span class="legend-item rating-3">3</span>
+          <span class="legend-item rating-5">5</span>
+          <span class="legend-item rating-6">6</span>
+          <span class="legend-item rating-7">7</span>
+          <span class="legend-item rating-8">8</span>
+          <span class="legend-item rating-10">10</span>
+          <span class="legend-label">← rating</span>
+        </div>
+      </div>
+      <div class="episodes" id="episodes"></div>
+    </section>
+
+  </main>
+
+</body>
+</html>
