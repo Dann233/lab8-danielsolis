@@ -1,5 +1,5 @@
-import { searchShows, getShowData, getEpisodeList } from "./Tvmaze.js";
-import { createSeasonHTML, createAutocompleteItemHTML } from "./Render.js";
+import { searchShows, getShowData, getEpisodeList } from "./tvmaze.js";
+import { createSeasonHTML, createAutocompleteItemHTML } from "./render.js";
 
 const DEFAULT_ID = "2993";
 
